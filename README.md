@@ -16,6 +16,7 @@
 | Optional | `?` | an optional character. |
 | Start Position | `^` | matched at the start of a string. |
 | End Position | `$` | matched at the end of a string. |
+| Vertical Bar | `th(e|is|at)` | one of the options inside. |
 
 Astrisk Example:
 ```
@@ -51,7 +52,7 @@ False: "ab" or "a\nb"
 ```
 
 <strong> Character Classes: This matches any... </strong>
-Note: The capitals can be negated to mean the lowercase.
+<br>Note: The capitals can be negated to mean the lowercase.
 
 | Name | Symbol | True | False |
 | --- | --- | --- | --- |
@@ -61,6 +62,7 @@ Note: The capitals can be negated to mean the lowercase.
 | Non-numbers | `/D` | `"asd"` | `"123"` |
 | Alpha-numeric | `/W` | `"hello", "world123"` | `@#$%` |
 | Non-alpha-numeric | `/w` | `@#$` | `"Hello" or "123"` |
+| Word Boundary | `/b` | ` -,;` | `abc123` |
 
 <strong> Custom Character Classes: This matches any character... </strong>
 
