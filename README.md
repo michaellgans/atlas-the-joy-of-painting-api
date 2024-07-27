@@ -16,7 +16,7 @@
 | Optional | `?` | an optional character. |
 | Start Position | `^` | matched at the start of a string. |
 | End Position | `$` | matched at the end of a string. |
-| Vertical Bar | `th(e|is|at)` | one of the options inside. |
+| Vertical Bar | `th(e\|is\|at)` | one of the options inside. |
 
 Astrisk Example:
 ```
