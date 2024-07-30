@@ -25,4 +25,32 @@ function pullValues() {
     }
 }
 
-pullValues();
+function pullValues2() {
+    // Trying lines with new line characters
+    let str = `"A Walk in the Woods" (January 11, 1983)
+               "Mount McKinley" (January 11, 1983)
+               "Ebony Sunset" (January 18, 1983)`;
+    
+    let csvLines = str.split(/\n/);
+
+    // Regex pattern (finds two matches)
+    // Find any number of characters that aren't " between two ".
+    // Finds the first "word" after the first (
+    let regexPatterns = /"([^"]*)"\s+\((\w+)/;
+
+    for (let line of csvLines) {
+        let match = line.match(regexPatterns);
+        // check for null
+        if (match) {
+            let paintingTitle = match[1];
+            let date = match[2];
+            console.log(`Title: ${paintingTitle}. Date: ${date}`);
+        } else {
+            console.log("No match found");
+        }
+    };
+}
+
+// pullValues();
+// console.log("-----")
+pullValues2();
