@@ -55,7 +55,7 @@ function pullValues2() {
 
 function pullValuesFromFile() {
     // Pulls lines from file instead of from hardcode
-    // Will print"No match found" if there is a new line
+    // Will print "No match found" if there is a new line
     // at the end of the txt file!
     const filePath = './testing/testText.txt';
 
@@ -89,9 +89,53 @@ function pullValuesFromFile() {
     };
 }
 
+function pullFromEpisodeDates() {
+    // Pulls lines from file instead of from hardcode
+    // Will print "No match found" if there is a new line
+    // at the end of the txt file!
+    const filePath = './episode_dates.txt';
+
+    let str;
+    // Try to read contents of file
+    try {
+        str = fs.readFileSync(filePath, 'utf8');
+        console.log("File has been read!");
+    } catch (err) {
+        console.error(err);
+        return;
+    }
+
+    let csvLines = str.split(/\n/);
+
+    // Regex pattern (finds two matches)
+    // Find any number of characters that aren't " between two ".
+    // Finds the first "word" after the first (
+    let regexPatterns = /"([^"]*)"\s+\((\w+)/;
+    let dict = new Map();
+
+    for (let line of csvLines) {
+        let match = line.match(regexPatterns);
+        // check for null
+        if (match) {
+            let paintingTitle = match[1];
+            let date = match[2];
+            // console.log(`Title: ${paintingTitle}. Date: ${date}`);
+
+            dict.set(paintingTitle, date);
+        } else {
+            console.log("No match found");
+        }
+    };
+
+    console.log(dict);
+    console.log(dict.size);
+}
+
 // Tests
-pullValues();
-console.log("-----")
-pullValues2();
-console.log("-----")
-pullValuesFromFile();
+// pullValues();
+// console.log("-----")
+// pullValues2();
+// console.log("-----")
+// pullValuesFromFile();
+// console.log("-----")
+pullFromEpisodeDates();
