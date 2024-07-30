@@ -96,13 +96,13 @@ function pullValuesFromFile() {
 
 function pullFromEpisodeDates() {
     // Reads source .txt file and returns split lines.
-    let txtLines = readFileUtil('./episode_dates.txt');
+    const txtLines = readFileUtil('./episode_dates.txt');
 
     // Regex pattern (finds two matches)
     // Find any number of characters that aren't " between two ".
     // Finds the first "word" after the first (
-    let regexPatterns = /"([^"]*)"\s+\((\w+)/;
-    let dict = new Map();
+    const regexPatterns = /"([^"]*)"\s+\((\w+)/;
+    const dict = new Map();
 
     // Callback method to loop through each line of text
     txtLines.forEach((line, index) => {
