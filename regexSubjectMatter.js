@@ -15,8 +15,6 @@ function regexTest() {
     let newCSVHeader = "ID" + csvHeader.replace(regexEpisode, "");
     newCSVHeader.toLowerCase();
 
-    // console.log(newCSVHeader);
-
     // Create clean dictionary with:
     // id, title, season, seasonHelper, episodeHelper, string
     const regexPatterns = /([^,]*),"{3}([^"]*)"{3},/;
@@ -24,12 +22,17 @@ function regexTest() {
     // const dict = new Map();
 
     // Callback method to loop through each line of text
-    txtLines.forEach((line) => { // add index back
+    txtLines.forEach((line, index) => {
         let match = line.match(regexPatterns);
-        // HOW TO SKIP FIRST LINE BECAUSE HEADER
+        // Skips the Header of the CSV 
+        if (index === 0) {
+            return;
+        }
         if (match) {
-            let paintingSeason = match[1]; // Needs to create helpers
-            let paintingTitle = match[2]; // Needs to be lower case
+            // TODO: Create helpers if time allows
+            let paintingSeason = match[1];
+            let paintingTitle = match[2];
+            paintingTitle.toLowerCase();
             console.log(`Title: ${paintingTitle}. Season: ${paintingSeason}`);
 
             // Adds auto-incrementing index to account for

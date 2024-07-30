@@ -93,3 +93,7 @@ Map {
 
 - Dictionaries do not maintain their order, but a Map Dictionary does
 - A dictionary will automatically overwrite a key that is not unique if you add that in.  In this case, a subsiquent painting had the same name and overwrote a previous dictionary entry.  This threw off the count from 403 to 401 in Data Validation.
+
+<br>
+Hello this is a solid line<br>
+Hello/n this should be on the next line
