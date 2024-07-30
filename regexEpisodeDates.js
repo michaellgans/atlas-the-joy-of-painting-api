@@ -1,12 +1,7 @@
-// Exploring Regex Patterns in a JavaScript File
-
-// ISSUES:
-// Regex is identifying the first exact match of a title
-// but if a second title is the same, the dictionary overwrites that.
-// SOLVE:
-// Add indexes to the dictionary to make each entry unique.
+// Exploring Regex Patterns in a JavaScript File for Episode Dates
 
 const fs = require('fs');
+const readFileUtil = require('./utils/readFileUtil.js');
 
 function pullValues() {
     // String to search through
@@ -100,22 +95,8 @@ function pullValuesFromFile() {
 }
 
 function pullFromEpisodeDates() {
-    // Pulls lines from file instead of from hardcode
-    // Will print "No match found" if there is a new line
-    // at the end of the txt file!
-    const filePath = './episode_dates.txt';
-
-    let str;
-    // Try to read contents of file
-    try {
-        str = fs.readFileSync(filePath, 'utf8');
-        console.log("File has been read!");
-    } catch (err) {
-        console.error(err);
-        return;
-    }
-
-    let txtLines = str.split(/\n/);
+    // Reads source .txt file and returns split lines.
+    let txtLines = readFileUtil('./episode_dates.txt');
 
     // Regex pattern (finds two matches)
     // Find any number of characters that aren't " between two ".
@@ -142,10 +123,10 @@ function pullFromEpisodeDates() {
 }
 
 // Tests
-// pullValues();
-// console.log("-----")
-// pullValues2();
-// console.log("-----")
-// pullValuesFromFile();
-// console.log("-----")
+pullValues();
+console.log("-----")
+pullValues2();
+console.log("-----")
+pullValuesFromFile();
+console.log("-----")
 pullFromEpisodeDates();
