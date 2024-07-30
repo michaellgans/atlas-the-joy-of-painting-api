@@ -1,5 +1,9 @@
 // Exploring Regex Patterns in a JavaScript File
 
+// ISSUES:
+// Regex is identifying the first exact match of a title
+// but if a second title is the same, it doesn't save that.
+
 const fs = require('fs');
 
 function pullValues() {
@@ -57,7 +61,7 @@ function pullValuesFromFile() {
     // Pulls lines from file instead of from hardcode
     // Will print "No match found" if there is a new line
     // at the end of the txt file!
-    const filePath = './testing/testText.txt';
+    const filePath = './episode_dates.txt';
 
     let str;
     // Try to read contents of file
@@ -75,6 +79,7 @@ function pullValuesFromFile() {
     // Find any number of characters that aren't " between two ".
     // Finds the first "word" after the first (
     let regexPatterns = /"([^"]*)"\s+\((\w+)/;
+    let count = 0;
 
     for (let line of csvLines) {
         let match = line.match(regexPatterns);
@@ -83,10 +88,13 @@ function pullValuesFromFile() {
             let paintingTitle = match[1];
             let date = match[2];
             console.log(`Title: ${paintingTitle}. Date: ${date}`);
+            count ++;
         } else {
             console.log("No match found");
         }
     };
+    // To validate the number of matches found
+    console.log(count);
 }
 
 function pullFromEpisodeDates() {
@@ -136,6 +144,6 @@ function pullFromEpisodeDates() {
 // console.log("-----")
 // pullValues2();
 // console.log("-----")
-// pullValuesFromFile();
+pullValuesFromFile();
 // console.log("-----")
-pullFromEpisodeDates();
+// pullFromEpisodeDates();
