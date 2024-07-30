@@ -2,7 +2,9 @@
 
 // ISSUES:
 // Regex is identifying the first exact match of a title
-// but if a second title is the same, it doesn't save that.
+// but if a second title is the same, the dictionary overwrites that.
+// SOLVE:
+// Add indexes to the dictionary to make each entry unique.
 
 const fs = require('fs');
 
@@ -113,7 +115,7 @@ function pullFromEpisodeDates() {
         return;
     }
 
-    let csvLines = str.split(/\n/);
+    let txtLines = str.split(/\n/);
 
     // Regex pattern (finds two matches)
     // Find any number of characters that aren't " between two ".
@@ -121,22 +123,22 @@ function pullFromEpisodeDates() {
     let regexPatterns = /"([^"]*)"\s+\((\w+)/;
     let dict = new Map();
 
-    for (let line of csvLines) {
+    // Callback method to loop through each line of text
+    txtLines.forEach((line, index) => {
         let match = line.match(regexPatterns);
-        // check for null
         if (match) {
             let paintingTitle = match[1];
-            let date = match[2];
-            // console.log(`Title: ${paintingTitle}. Date: ${date}`);
-
-            dict.set(paintingTitle, date);
+            let paintingMonth = match[2];
+            // Adds auto-incrementing index to account for
+            // Map overwriting non-unique keys
+            dict.set(index + 1, { paintingTitle, paintingMonth });
         } else {
-            console.log("No match found");
+            console.log("No pattern found.");
         }
-    };
+    });
 
+    console.log(`Size of dictionary: ${dict.size}`);
     console.log(dict);
-    console.log(dict.size);
 }
 
 // Tests
@@ -144,6 +146,6 @@ function pullFromEpisodeDates() {
 // console.log("-----")
 // pullValues2();
 // console.log("-----")
-pullValuesFromFile();
+// pullValuesFromFile();
 // console.log("-----")
-// pullFromEpisodeDates();
+pullFromEpisodeDates();

@@ -75,3 +75,21 @@ False: "ab" or "a\nb"
 #### Regex Notes
 
 - To search for characters that are used in Regex pattners, they will need to be escaped. `\d+[\+-x\*]\d+` This pattern is looking for a digit repeated at least once, then a `+-x*`, and another digit repeated at least once.  Both `+` and `*` are escaped.
+
+## Code Snips
+```
+michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node regexEpisodeDates.js | head -8
+File has been read!
+Size of dictionary: 403
+Map {
+  1 => { paintingTitle: 'A Walk in the Woods', paintingMonth: 'January' },
+  2 => { paintingTitle: 'Mount McKinley', paintingMonth: 'January' },
+  3 => { paintingTitle: 'Ebony Sunset', paintingMonth: 'January' },
+  4 => { paintingTitle: 'Winter Mist', paintingMonth: 'January' },
+  5 => { paintingTitle: 'Quiet Stream', paintingMonth: 'February' },
+```
+
+## Lessons Learned
+
+- Dictionaries do not maintain their order, but a Map Dictionary does
+- A dictionary will automatically overwrite a key that is not unique if you add that in.  In this case, a subsiquent painting had the same name and overwrote a previous dictionary entry.  This threw off the count from 403 to 401 in Data Validation.
