@@ -15,29 +15,33 @@ function regexTest() {
     let newCSVHeader = "ID" + csvHeader.replace(regexEpisode, "");
     newCSVHeader.toLowerCase();
 
-    console.log(newCSVHeader);
+    // console.log(newCSVHeader);
 
     // Create clean dictionary with:
     // id, title, season, seasonHelper, episodeHelper, string
-    const regexPatterns = /"([^"]*)"\s+\((\w+)/;
-    const dict = new Map();
+    const regexPatterns = /([^,]*),"{3}([^"]*)"{3},/;
+
+    // const dict = new Map();
 
     // Callback method to loop through each line of text
-    txtLines.forEach((line, index) => {
+    txtLines.forEach((line) => { // add index back
         let match = line.match(regexPatterns);
+        // HOW TO SKIP FIRST LINE BECAUSE HEADER
         if (match) {
-            let paintingTitle = match[1];
-            let paintingMonth = match[2];
+            let paintingSeason = match[1]; // Needs to create helpers
+            let paintingTitle = match[2]; // Needs to be lower case
+            console.log(`Title: ${paintingTitle}. Season: ${paintingSeason}`);
+
             // Adds auto-incrementing index to account for
             // Map overwriting non-unique keys
-            dict.set(index + 1, { paintingTitle, paintingMonth });
+            // dict.set(index + 1, { paintingTitle, paintingMonth });
         } else {
             console.log("No pattern found.");
         }
     });
 
-    console.log(`Size of dictionary: ${dict.size}`);
-    console.log(dict);
+    // console.log(`Size of dictionary: ${dict.size}`);
+    // console.log(dict);
 
     // Create new CSV with:
     // id, title, string
