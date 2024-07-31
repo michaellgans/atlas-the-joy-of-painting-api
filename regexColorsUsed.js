@@ -2,30 +2,14 @@
 // that data into a Map Dictionary
 
 const readFileUtil = require('./utils/readFileUtil.js');
-const capWordUtil = require('./utils/capWordUtil.js');
 
 function regexColorsUsed() {
     // Read source CSV file
-    const txtLines = readFileUtil('./testing/testColorsUsed.csv');
-
-    // Store title string
-    const csvHeader = txtLines[0]; // Origional Header
-
-    // Parse csvHeader to get colors string
-    const regexHeader = /^([^B]*)/;
-    const paintingColors = csvHeader.replace(regexHeader, "");
-
-    // Define start of new header
-    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
-    let newCSVHeader = "id,painting_title,season_helper,episode_helper,total_colors,youtube_src,"
-    newCSVHeader = newCSVHeader + paintingColors;
-    let formattedHeader = capWordUtil(newCSVHeader, ",");
+    const txtLines = readFileUtil('./sources/colors_used.csv');
 
     // Create clean dictionary with data needed
-    const regexPatterns = /^(\d{1,3}),\d*,([^,]*),([^,]*),(\d{1,3}),(\d{1,3}),(\d{1,3}),([^,]*)(,"([^"]*")){2}/;
-    // const match = txtLines[1].match(regexPatterns);
+    const regexPatterns = /^(\d{1,3}),\d*,([^,]*),([^,]*),(\d{1,3}),(\d{1,3}),(\d{1,3}),([^,]*)(,"([^"]*")){2},/;
 
-    // console.log(`id = ${match[1]}, paintingTitle = ${match[3]}, season_helper = ${match[4]}, episode_helper = ${match[5]}, total_colors = ${match[6]}, youtube_src = ${match[7]}`);
     const dict = new Map();
 
     // Callback method to loop through each line of text
@@ -55,21 +39,12 @@ function regexColorsUsed() {
 
     console.log(`Size of dictionary: ${dict.size}`);
     console.log(dict);
-
-    // // Create new CSV with:
-    // // id, title, string
-    // headersArray = formattedHeader.split(',');
-
-    // Transform Map into Array
-    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
-    // data = [...dict.entries()].map(([id, { newPaintingTitle, paintingSubjects }]) => [
-    //     id,
-    //     newPaintingTitle,
-    //     paintingSubjects
-    // ]);
-
-    // writeFileUtil('./subject.csv', headersArray, data);
 }
 
-// Tests
-regexColorsUsed();
+// Export Functions
+module.exports = { regexColorsUsed }
+
+// Execute
+if (require.main === module) {
+    regexColorsUsed();
+}

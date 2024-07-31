@@ -6,7 +6,7 @@
 // @MONTH - what month of the year the painting aired
 
 const capWordUtil = require('../utils/capWordUtil.js');
-// const SubjectsMap = require('../createCSVScripts/subjects.js');
+const colorsUsedMap = require('../regexColorsUsed.js');
 
 // Generates Episodes Map
 function createEpisodesMap() {
@@ -17,7 +17,7 @@ function createEpisodesMap() {
 
     // Pull data from imported Maps
 
-    const 
+    console.log(colorsUsedMap[1]);
     
     // Create clean dictionary with data needed
     // const dict = new Map();
@@ -67,10 +67,10 @@ function createEpisodesMap() {
 //     writeFileUtil('./transformedCSVs/colors_by_painting.csv', headersArray, data);
 // }
 
-// // Export Functions
-// module.exports = { createColorsByPaintingMap, writeColorsByPaintingCSV }
+// Export Functions
+module.exports = { createEpisodesMap }
 
-// // Execute
-// if (require.main === module) {
-//     writeColorsByPaintingCSV();
-// }
+// Execute
+if (require.main === module) {
+    createEpisodesMap();
+}
