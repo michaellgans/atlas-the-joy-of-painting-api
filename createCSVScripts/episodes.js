@@ -7,6 +7,7 @@
 
 const capWordUtil = require('../utils/capWordUtil.js');
 const { regexColorsUsed } = require('../regexColorsUsed.js');
+const { regexEpisodeDates } = require('../regexEpisodeDates.js');
 
 // Generates Episodes Map
 function createEpisodesMap() {
@@ -16,9 +17,10 @@ function createEpisodesMap() {
     const formattedHeader = capWordUtil(newCSVHeader, ","); // Final Format
 
     // Pull data from imported Maps
-    const { dict } = regexColorsUsed();
+    const { dict: colorsDict } = regexColorsUsed();
+    const { dict: datesDict } = regexEpisodeDates();
 
-    console.log(dict);
+    console.log(colorsDict);
     
     // Create clean dictionary with data needed
     // const dict = new Map();
