@@ -38,7 +38,8 @@ function regexColorsUsed() {
     });
 
     console.log(`Size of dictionary: ${dict.size}`);
-    console.log(dict);
+    // console.log(dict);
+    return { dict };
 }
 
 // Export Functions

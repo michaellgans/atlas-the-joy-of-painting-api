@@ -6,7 +6,7 @@
 // @MONTH - what month of the year the painting aired
 
 const capWordUtil = require('../utils/capWordUtil.js');
-const colorsUsedMap = require('../regexColorsUsed.js');
+const { regexColorsUsed } = require('../regexColorsUsed.js');
 
 // Generates Episodes Map
 function createEpisodesMap() {
@@ -16,8 +16,9 @@ function createEpisodesMap() {
     const formattedHeader = capWordUtil(newCSVHeader, ","); // Final Format
 
     // Pull data from imported Maps
+    const { dict } = regexColorsUsed();
 
-    console.log(colorsUsedMap[1]);
+    console.log(dict);
     
     // Create clean dictionary with data needed
     // const dict = new Map();
