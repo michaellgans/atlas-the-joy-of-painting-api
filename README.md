@@ -93,9 +93,9 @@ Demonstrates a test for writing a new CSV file and Data Validation.
 ```
 michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node regexSubjectMatter.js
 File has been read!
-Size of dictionary: 3
+Size of dictionary: 403
 File successfully written!
-Size of new CSV: 3
+Size of new CSV: 403
 ```
 
 ## Lessons Learned
