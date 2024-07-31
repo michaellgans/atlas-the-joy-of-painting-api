@@ -17,10 +17,10 @@ function regexTest() {
     newCSVHeader.toLowerCase();
 
     // Create clean dictionary with:
-    // id, title, season, string
+    // id, title, season, subjects
     const regexPatterns = /([^,]*),"{3}([^"]*)"{3},/;
 
-    // const dict = new Map();
+    const dict = new Map();
 
     // Callback method to loop through each line of text
     txtLines.forEach((line, index) => {
@@ -37,21 +37,19 @@ function regexTest() {
             let newPaintingTitle = paintingTitle.toLowerCase(); // lowercase
             newPaintingTitle = capWordUtil(newPaintingTitle); // Final Form
 
-            // Capture true/false string from each match
+            // Capture true/false subject string from each line
             let paintingSubjects = line.replace(regexPatterns, "");
-            console.log(`Title: ${newPaintingTitle}. Season: ${paintingSeason}.`);
-            console.log(`String: ${paintingSubjects}`);
 
             // Adds auto-incrementing index to account for
             // Map overwriting non-unique keys
-            // dict.set(index + 1, { paintingTitle, paintingMonth });
+            dict.set(index, { newPaintingTitle, paintingSeason, paintingSubjects });
         } else {
             console.log("No pattern found.");
         }
     });
 
-    // console.log(`Size of dictionary: ${dict.size}`);
-    // console.log(dict);
+    console.log(`Size of dictionary: ${dict.size}`);
+    console.log(dict);
 
     // Create new CSV with:
     // id, title, string
