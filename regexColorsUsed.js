@@ -25,19 +25,11 @@ function regexColorsUsed() {
     let formattedHeader = capWordUtil(newCSVHeader, ",");
     console.log(formattedHeader);
 
-    // TODO: 
-    // Isolate title, youtube, season, episode, total_colors, true/false
-    // Change season and episode to season_helper ect
-    // Change num_colors to total_colors?
-    // const regexEpisode = /^[^,]*/; // Matches: "EPISODE"
+    // Create clean dictionary with:
+    // id, title, season, subjects
+    const regexPatterns = /^([^,]*,){2}([^,]*),([^,]*),(\d),(\d),(\d)/;
 
-    // // Remove "Episode" from title string and add "id"
-    // let newCSVHeader = "ID" + csvHeader.replace(regexEpisode, "");
-    // newCSVHeader.toLowerCase();
-
-    // // Create clean dictionary with:
-    // // id, title, season, subjects
-    // const regexPatterns = /([^,]*),"{3}([^"]*)"{3},/;
+    `([^,]*,)(.*(?=painting_title))(.*(?=colors))([^B]*)`
 
     // const dict = new Map();
 
