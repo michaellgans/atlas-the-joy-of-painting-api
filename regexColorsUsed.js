@@ -1,10 +1,8 @@
 // Captures data from a CSV with Regex Patterns and stores
 // that data into a Map Dictionary
 
-const fs = require('fs');
 const readFileUtil = require('./utils/readFileUtil.js');
 const capWordUtil = require('./utils/capWordUtil.js');
-const writeFileUtil = require('./utils/writeFileUtil.js');
 
 function regexColorsUsed() {
     // Read source CSV file

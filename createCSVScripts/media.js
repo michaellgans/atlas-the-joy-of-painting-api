@@ -3,7 +3,6 @@
 // @TITLE - name of painting
 // @YOUTUBE_SRC - link to Bob Ross video of painting
 
-const fs = require('fs');
 const readFileUtil = require('../utils/readFileUtil.js');
 const capWordUtil = require('../utils/capWordUtil.js');
 const writeFileUtil = require('../utils/writeFileUtil.js');

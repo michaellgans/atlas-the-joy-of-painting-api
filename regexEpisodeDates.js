@@ -95,7 +95,7 @@ function pullValuesFromFile() {
     console.log(count);
 }
 
-function pullFromEpisodeDates() {
+function createDatesMap() {
     // Reads source .txt file and returns split lines.
     const txtLines = readFileUtil('./sources/episode_dates.txt');
 
@@ -130,4 +130,12 @@ function pullFromEpisodeDates() {
 // console.log("-----")
 // pullValuesFromFile();
 // console.log("-----")
-pullFromEpisodeDates();
+// pullFromEpisodeDates();
+
+// Export Functions
+module.exports = { createDatesMap }
+
+// Execute
+if (require.main === module) {
+    createDatesMap();
+}

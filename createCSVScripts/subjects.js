@@ -3,7 +3,6 @@
 // @TITLE - name of painting
 // @SUBJECT - name of subject present in painting, true/false
 
-const fs = require('fs');
 const readFileUtil = require('../utils/readFileUtil.js');
 const capWordUtil = require('../utils/capWordUtil.js');
 const writeFileUtil = require('../utils/writeFileUtil.js');
