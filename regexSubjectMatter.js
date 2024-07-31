@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const readFileUtil = require('./utils/readFileUtil.js');
+const capWordUtil = require('./utils/capWordUtil.js');
 
 function regexTest() {
     // Read source CSV file
@@ -16,7 +17,7 @@ function regexTest() {
     newCSVHeader.toLowerCase();
 
     // Create clean dictionary with:
-    // id, title, season, seasonHelper, episodeHelper, string
+    // id, title, season, string
     const regexPatterns = /([^,]*),"{3}([^"]*)"{3},/;
 
     // const dict = new Map();
@@ -29,11 +30,17 @@ function regexTest() {
             return;
         }
         if (match) {
-            // TODO: Create helpers if time allows
             let paintingSeason = match[1];
-            let paintingTitle = match[2];
-            paintingTitle.toLowerCase();
-            console.log(`Title: ${paintingTitle}. Season: ${paintingSeason}`);
+
+            // Transforming Painting Title
+            let paintingTitle = match[2]; // ALL CAPS
+            let newPaintingTitle = paintingTitle.toLowerCase(); // lowercase
+            newPaintingTitle = capWordUtil(newPaintingTitle); // Final Form
+
+            // Capture true/false string from each match
+            let paintingSubjects = line.replace(regexPatterns, "");
+            console.log(`Title: ${newPaintingTitle}. Season: ${paintingSeason}.`);
+            console.log(`String: ${paintingSubjects}`);
 
             // Adds auto-incrementing index to account for
             // Map overwriting non-unique keys
