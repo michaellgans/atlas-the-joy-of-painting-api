@@ -24,7 +24,7 @@ function regexColorsUsed() {
     let formattedHeader = capWordUtil(newCSVHeader, ",");
 
     // Create clean dictionary with data needed
-    const regexPatterns = /^(\d*),\d*,([^,]*),([^,]*),(\d),(\d),(\d),([^,]*)(,"([^"]*")){2}/;
+    const regexPatterns = /^(\d{1,3}),\d*,([^,]*),([^,]*),(\d{1,3}),(\d{1,3}),(\d{1,3}),([^,]*)(,"([^"]*")){2}/;
     // const match = txtLines[1].match(regexPatterns);
 
     // console.log(`id = ${match[1]}, paintingTitle = ${match[3]}, season_helper = ${match[4]}, episode_helper = ${match[5]}, total_colors = ${match[6]}, youtube_src = ${match[7]}`);

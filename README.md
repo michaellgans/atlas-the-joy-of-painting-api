@@ -101,6 +101,13 @@ Size of dictionary: 403
 File successfully written!
 Size of new CSV: 403
 ```
+Refines CSV file creation!
+```
+michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node createCSVScripts/media.js
+File has been read!
+File successfully written!
+Size of new CSV: 403
+```
 
 ## Lessons Learned
 
