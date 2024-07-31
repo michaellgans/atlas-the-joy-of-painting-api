@@ -1,5 +1,9 @@
 # The Joy of Painting
 
+## Transformation Consistency Checklist
+- CSV headers will have the first letter capitalized only.
+- Painting Titles will have the first letter capitalized only.
+
 ### Regex - Parsing the Data
 
 <strong>This symbol means the preceding character is...</strong>
