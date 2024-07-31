@@ -67,7 +67,7 @@ function regexSubjectMatter() {
         paintingSubjects
     ]);
 
-    writeFileUtil('./transformedCSVs/subject2.csv', headersArray, data);
+    writeFileUtil('./transformedCSVs/subject.csv', headersArray, data);
 }
 
 // Tests
