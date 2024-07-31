@@ -96,7 +96,7 @@ function pullValuesFromFile() {
 
 function pullFromEpisodeDates() {
     // Reads source .txt file and returns split lines.
-    const txtLines = readFileUtil('./episode_dates.txt');
+    const txtLines = readFileUtil('./sources/episode_dates.txt');
 
     // Regex pattern (finds two matches)
     // Find any number of characters that aren't " between two ".
@@ -123,10 +123,10 @@ function pullFromEpisodeDates() {
 }
 
 // Tests
-pullValues();
-console.log("-----")
-pullValues2();
-console.log("-----")
-pullValuesFromFile();
-console.log("-----")
+// pullValues();
+// console.log("-----")
+// pullValues2();
+// console.log("-----")
+// pullValuesFromFile();
+// console.log("-----")
 pullFromEpisodeDates();
