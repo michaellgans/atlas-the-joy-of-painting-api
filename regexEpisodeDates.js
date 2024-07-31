@@ -1,4 +1,5 @@
-// Exploring Regex Patterns in a JavaScript File for Episode Dates
+// Captures data from a CSV with Regex Patterns and stores
+// that data into a Map Dictionary
 
 const fs = require('fs');
 const readFileUtil = require('./utils/readFileUtil.js');

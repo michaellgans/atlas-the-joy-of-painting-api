@@ -1,4 +1,5 @@
-// Exploring Regex patterns to match new CSV strings
+// Captures data from a CSV with Regex Patterns and stores
+// that data into a Map Dictionary
 
 const fs = require('fs');
 const readFileUtil = require('./utils/readFileUtil.js');
