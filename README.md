@@ -106,3 +106,4 @@ Size of new CSV: 403
 
 - Dictionaries do not maintain their order, but a Map Dictionary does
 - A dictionary will automatically overwrite a key that is not unique if you add that in.  In this case, a subsiquent painting had the same name and overwrote a previous dictionary entry.  This threw off the count from 403 to 401 in Data Validation.
+- When setting the path to a file you're writing, it starts from the root of the directory.  It doesn't matter where the file is that you're writing from.
