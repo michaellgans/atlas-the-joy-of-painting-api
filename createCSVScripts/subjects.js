@@ -1,5 +1,7 @@
-// Captures data from a CSV with Regex Patterns and stores
-// that data into a Map Dictionary
+// Creates "Subjects" CSV for PowerBI
+// @ID - identifies unique paintings
+// @TITLE - name of painting
+// @SUBJECT - name of subject present in painting, true/false
 
 const fs = require('fs');
 const readFileUtil = require('../utils/readFileUtil.js');
