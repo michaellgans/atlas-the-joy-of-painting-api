@@ -10,8 +10,7 @@ const writeFileUtil = require('../utils/writeFileUtil.js');
 
 function regexColorsUsed() {
     // Read source CSV file
-    const txtLines = readFileUtil('./sources/subject_matter.csv');
-    // const txtLines = readFileUtil('./testing/testColorsUsed.csv');
+    const txtLines = readFileUtil('./sources/colors_used.csv');
 
     // Store title string
     const csvHeader = txtLines[0]; // Origional Header
@@ -72,7 +71,6 @@ function regexColorsUsed() {
     ]);
 
     writeFileUtil('./transformedCSVs/media.csv', headersArray, data);
-    // writeFileUtil('./testing/testMedia.csv', headersArray, data);
 }
 
 // Tests

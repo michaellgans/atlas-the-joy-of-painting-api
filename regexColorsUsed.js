@@ -8,7 +8,6 @@ const writeFileUtil = require('./utils/writeFileUtil.js');
 
 function regexColorsUsed() {
     // Read source CSV file
-    // const txtLines = readFileUtil('./sources/subject_matter.csv');
     const txtLines = readFileUtil('./testing/testColorsUsed.csv');
 
     // Store title string

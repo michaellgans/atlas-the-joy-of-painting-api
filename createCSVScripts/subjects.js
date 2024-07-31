@@ -10,7 +10,7 @@ const writeFileUtil = require('../utils/writeFileUtil.js');
 
 function regexSubjectMatter() {
     // Read source CSV file
-    const txtLines = readFileUtil('../sources/subject_matter.csv');
+    const txtLines = readFileUtil('./sources/subject_matter.csv');
 
     // Store title string
     const csvHeader = txtLines[0];
@@ -67,7 +67,7 @@ function regexSubjectMatter() {
         paintingSubjects
     ]);
 
-    writeFileUtil('../transformedCSVs/subject.csv', headersArray, data);
+    writeFileUtil('./transformedCSVs/subject2.csv', headersArray, data);
 }
 
 // Tests
