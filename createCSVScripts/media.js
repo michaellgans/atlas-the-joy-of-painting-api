@@ -8,7 +8,8 @@ const readFileUtil = require('../utils/readFileUtil.js');
 const capWordUtil = require('../utils/capWordUtil.js');
 const writeFileUtil = require('../utils/writeFileUtil.js');
 
-function createMediaCSV() {
+// Generates Media Map
+function createMediaMap() {
     // Read source CSV file
     const txtLines = readFileUtil('./sources/colors_used.csv');
 
@@ -42,6 +43,12 @@ function createMediaCSV() {
     });
 
     console.log(`Size of dictionary: ${dict.size}`);
+    return { dict, formattedHeader };
+}
+
+// Writes Media CSV
+function writeMediaCSV() {
+    const { dict, formattedHeader } = createMediaMap();
 
     // Create new CSV with: id, title, youtube_src
     headersArray = formattedHeader.split(',');
@@ -57,5 +64,10 @@ function createMediaCSV() {
     writeFileUtil('./transformedCSVs/media.csv', headersArray, data);
 }
 
+// Export Functions
+module.exports = { createMediaMap, writeMediaCSV }
+
 // Execute
-createMediaCSV();
+if (require.main === module) {
+    writeMediaCSV();
+}

@@ -8,7 +8,8 @@ const readFileUtil = require('../utils/readFileUtil.js');
 const capWordUtil = require('../utils/capWordUtil.js');
 const writeFileUtil = require('../utils/writeFileUtil.js');
 
-function createSubjectsCSV() {
+// Generates Subjects Map
+function createSubjectsMap() {
     // Read source CSV file
     const txtLines = readFileUtil('./sources/subject_matter.csv');
 
@@ -52,6 +53,12 @@ function createSubjectsCSV() {
     });
 
     console.log(`Size of dictionary: ${dict.size}`);
+    return { dict, formattedHeader };
+}
+
+// Writes Subject CSV
+function writeSubjectsCSV() {
+    const { dict, formattedHeader } = createSubjectsMap();
 
     // Create new CSV with: id, title, subjects
     headersArray = formattedHeader.split(',');
@@ -67,5 +74,10 @@ function createSubjectsCSV() {
     writeFileUtil('./transformedCSVs/subject.csv', headersArray, data);
 }
 
+// Export Functions
+module.exports = { createSubjectsMap, writeSubjectsCSV }
+
 // Execute
-createSubjectsCSV();
+if (require.main === module) {
+    writeSubjectsCSV();
+}

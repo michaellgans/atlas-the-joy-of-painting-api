@@ -9,7 +9,8 @@ const readFileUtil = require('../utils/readFileUtil.js');
 const capWordUtil = require('../utils/capWordUtil.js');
 const writeFileUtil = require('../utils/writeFileUtil.js');
 
-function createColorsByPaintingCSV() {
+// Generates ColorsByPainting Map
+function createColorsByPaintingMap() {
     // Read source CSV file
     const txtLines = readFileUtil('./sources/colors_used.csv');
 
@@ -54,6 +55,12 @@ function createColorsByPaintingCSV() {
     });
 
     console.log(`Size of dictionary: ${dict.size}`);
+    return { dict, formattedHeader };
+}
+
+// Writes Subject CSV
+function writeColorsByPaintingCSV() {
+    const { dict, formattedHeader } = createColorsByPaintingMap();
 
     // Create new CSV with: id, title, color_data, total_colors
     headersArray = formattedHeader.split(',');
@@ -70,5 +77,10 @@ function createColorsByPaintingCSV() {
     writeFileUtil('./transformedCSVs/colors_by_painting.csv', headersArray, data);
 }
 
+// Export Functions
+module.exports = { createColorsByPaintingMap, writeColorsByPaintingCSV }
+
 // Execute
-createColorsByPaintingCSV();
+if (require.main === module) {
+    writeColorsByPaintingCSV();
+}
