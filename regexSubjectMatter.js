@@ -16,7 +16,8 @@ function regexSubjectMatter() {
 
     // Remove "Episode" from title string and add "id"
     let newCSVHeader = "ID" + csvHeader.replace(regexEpisode, "");
-    newCSVHeader.toLowerCase();
+    let formattedHeader = newCSVHeader.toLowerCase();
+    formattedHeader = capWordUtil(formattedHeader, ",");
 
     // Create clean dictionary with:
     // id, title, season, subjects
@@ -37,7 +38,7 @@ function regexSubjectMatter() {
             // Transforming Painting Title
             let paintingTitle = match[2]; // ALL CAPS
             let newPaintingTitle = paintingTitle.toLowerCase(); // lowercase
-            newPaintingTitle = capWordUtil(newPaintingTitle); // Final Form
+            newPaintingTitle = capWordUtil(newPaintingTitle, " "); // Final Form
 
             // Capture true/false subject string from each line
             let paintingSubjects = line.replace(regexPatterns, "");
@@ -50,12 +51,12 @@ function regexSubjectMatter() {
         }
     });
 
-    console.log(`Size of dictionary: ${dict.size}`);
+    // console.log(`Size of dictionary: ${dict.size}`);
     // console.log(dict);
 
     // Create new CSV with:
     // id, title, string
-    headersArray = newCSVHeader.split(',');
+    headersArray = formattedHeader.split(',');
 
     // Transform Map into Array
     data = [...dict.entries()].map(([id, { newPaintingTitle, paintingSubjects }]) => [
@@ -64,7 +65,7 @@ function regexSubjectMatter() {
         paintingSubjects
     ]);
 
-    writeFileUtil('./subject.csv', headersArray, data);
+    writeFileUtil('./transformedCSVs/subject.csv', headersArray, data);
 }
 
 // Tests
