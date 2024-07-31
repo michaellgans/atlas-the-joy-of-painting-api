@@ -12,7 +12,8 @@ function createSubjectsCSV() {
     // Read source CSV file
     const txtLines = readFileUtil('./sources/subject_matter.csv');
 
-    // Store title string
+    // Store CSV Header
+    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
     const csvHeader = txtLines[0];
     const regexEpisode = /^[^,]*/; // Matches: "EPISODE"
 
@@ -50,13 +51,13 @@ function createSubjectsCSV() {
         }
     });
 
-    // console.log(`Size of dictionary: ${dict.size}`);
-    // console.log(dict);
+    console.log(`Size of dictionary: ${dict.size}`);
 
     // Create new CSV with: id, title, subjects
     headersArray = formattedHeader.split(',');
 
     // Transform Map into Array
+    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
     data = [...dict.entries()].map(([id, { newPaintingTitle, paintingSubjects }]) => [
         id,
         newPaintingTitle,

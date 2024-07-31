@@ -8,26 +8,18 @@ const readFileUtil = require('../utils/readFileUtil.js');
 const capWordUtil = require('../utils/capWordUtil.js');
 const writeFileUtil = require('../utils/writeFileUtil.js');
 
-function regexColorsUsed() {
+function createMediaCSV() {
     // Read source CSV file
     const txtLines = readFileUtil('./sources/colors_used.csv');
-
-    // Store title string
-    const csvHeader = txtLines[0]; // Origional Header
-
-    // Parse csvHeader to get colors string
-    const regexHeader = /^([^B]*)/;
-    const paintingColors = csvHeader.replace(regexHeader, "");
 
     // Define start of new header
     // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
     let newCSVHeader = "id,painting_title,youtube_src"
-    let formattedHeader = capWordUtil(newCSVHeader, ",");
+    let formattedHeader = capWordUtil(newCSVHeader, ","); // Final Format
 
     // Create clean dictionary with data needed
     const regexPatterns = /^(\d{1,3}),\d*,([^,]*),([^,]*),(\d{1,3}),(\d{1,3}),(\d{1,3}),([^,]*)(,"([^"]*")){2}/;
 
-    // console.log(`id = ${match[1]}, paintingTitle = ${match[3]}, season_helper = ${match[4]}, episode_helper = ${match[5]}, total_colors = ${match[6]}, youtube_src = ${match[7]}`);
     const dict = new Map();
 
     // Callback method to loop through each line of text
@@ -40,26 +32,18 @@ function regexColorsUsed() {
         if (match) {
             let id = match[1];
             let paintingTitle = match[3];
-            let season_helper = match[4];
-            let episode_helper = match[5];
-            let total_colors = match[6];
             let youtube_src = match[7];
 
-            // Capture true/false color string from each line
-            let colorsData = line.replace(regexPatterns, "");
-
             // Adds data from CSV to Map Dictionary
-            dict.set(id, { paintingTitle, season_helper, episode_helper, total_colors, youtube_src, colorsData });
+            dict.set(id, { paintingTitle, youtube_src });
         } else {
             console.log("No pattern found.");
         }
     });
 
-    // console.log(`Size of dictionary: ${dict.size}`);
-    // console.log(dict);
+    console.log(`Size of dictionary: ${dict.size}`);
 
-    // Create new CSV with:
-    // id, title, youtube_src
+    // Create new CSV with: id, title, youtube_src
     headersArray = formattedHeader.split(',');
 
     // Transform Map into Array
@@ -73,5 +57,5 @@ function regexColorsUsed() {
     writeFileUtil('./transformedCSVs/media.csv', headersArray, data);
 }
 
-// Tests
-regexColorsUsed();
+// Execute
+createMediaCSV();

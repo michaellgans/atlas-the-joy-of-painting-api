@@ -9,9 +9,8 @@ const readFileUtil = require('../utils/readFileUtil.js');
 const capWordUtil = require('../utils/capWordUtil.js');
 const writeFileUtil = require('../utils/writeFileUtil.js');
 
-function regexColorsUsed() {
+function createColorsByPaintingCSV() {
     // Read source CSV file
-    // const txtLines = readFileUtil('./testing/testColorsUsed.csv');
     const txtLines = readFileUtil('./sources/colors_used.csv');
 
     // Store title string
@@ -25,12 +24,10 @@ function regexColorsUsed() {
     // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
     let newCSVHeader = "id,painting_title,"
     newCSVHeader = newCSVHeader + paintingColors + ",total_colors";
-    let formattedHeader = capWordUtil(newCSVHeader, ",");
+    let formattedHeader = capWordUtil(newCSVHeader, ","); // Final Format
 
     // Create clean dictionary with data needed
     const regexPatterns = /^(\d{1,3}),\d*,([^,]*),([^,]*),(\d{1,3}),(\d{1,3}),(\d{1,3}),([^,]*)(,"([^"]*")){2},/;
-
-    // console.log(`id = ${match[1]}, paintingTitle = ${match[3]}, season_helper = ${match[4]}, episode_helper = ${match[5]}, total_colors = ${match[6]}, youtube_src = ${match[7]}`);
 
     const dict = new Map();
 
@@ -56,11 +53,9 @@ function regexColorsUsed() {
         }
     });
 
-    // console.log(`Size of dictionary: ${dict.size}`);
-    // console.log(dict);
+    console.log(`Size of dictionary: ${dict.size}`);
 
-    // Create new CSV with:
-    // id, title, color_data, total_colors
+    // Create new CSV with: id, title, color_data, total_colors
     headersArray = formattedHeader.split(',');
 
     // Transform Map into Array
@@ -75,5 +70,5 @@ function regexColorsUsed() {
     writeFileUtil('./transformedCSVs/colors_by_painting.csv', headersArray, data);
 }
 
-// Tests
-regexColorsUsed();
+// Execute
+createColorsByPaintingCSV();
