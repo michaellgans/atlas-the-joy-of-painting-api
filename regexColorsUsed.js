@@ -12,7 +12,19 @@ function regexColorsUsed() {
     const txtLines = readFileUtil('./testing/testColorsUsed.csv');
 
     // Store title string
-    const csvHeader = txtLines[0];
+    const csvHeader = txtLines[0]; // Origional Header
+
+    // Parse csvHeader to get colors string
+    const regexHeader = /^([^B]*)/;
+    const paintingColors = csvHeader.replace(regexHeader, "");
+
+    // Define start of new header
+    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
+    let newCSVHeader = "id,painting_title,season_helper,episode_helper,total_colors,youtube_src,"
+    newCSVHeader = newCSVHeader + paintingColors;
+    let formattedHeader = capWordUtil(newCSVHeader, ",");
+    console.log(formattedHeader);
+
     // TODO: 
     // Isolate title, youtube, season, episode, total_colors, true/false
     // Change season and episode to season_helper ect
@@ -60,7 +72,7 @@ function regexColorsUsed() {
 
     // // Create new CSV with:
     // // id, title, string
-    // headersArray = newCSVHeader.split(',');
+    // headersArray = formattedHeader.split(',');
 
     // // Transform Map into Array
     // data = [...dict.entries()].map(([id, { newPaintingTitle, paintingSubjects }]) => [
