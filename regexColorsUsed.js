@@ -5,7 +5,7 @@ const readFileUtil = require('./utils/readFileUtil.js');
 const capWordUtil = require('./utils/capWordUtil.js');
 const writeFileUtil = require('./utils/writeFileUtil.js');
 
-function regexSubjectMatter() {
+function regexColorsUsed() {
     // Read source CSV file
     const txtLines = readFileUtil('./sources/subject_matter.csv');
 
@@ -67,4 +67,4 @@ function regexSubjectMatter() {
 }
 
 // Tests
-regexSubjectMatter();
+regexColorsUsed();
