@@ -7,7 +7,7 @@ const writeFileUtil = require('./utils/writeFileUtil.js');
 
 function regexTest() {
     // Read source CSV file
-    const txtLines = readFileUtil('./testing/testSubjectMatter.csv');
+    const txtLines = readFileUtil('./sources/subject_matter.csv');
 
     // Store title string
     const csvHeader = txtLines[0];
@@ -63,7 +63,7 @@ function regexTest() {
         paintingSubjects
     ]);
 
-    writeFileUtil('./test.csv', headersArray, data);
+    writeFileUtil('./subject.csv', headersArray, data);
 }
 
 // Tests
