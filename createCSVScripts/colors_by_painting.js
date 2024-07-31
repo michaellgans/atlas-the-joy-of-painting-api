@@ -11,8 +11,8 @@ const writeFileUtil = require('../utils/writeFileUtil.js');
 
 function regexColorsUsed() {
     // Read source CSV file
-    const txtLines = readFileUtil('./testing/testColorsUsed.csv');
-    // const txtLines = readFileUtil('./sources/colors_used.csv');
+    // const txtLines = readFileUtil('./testing/testColorsUsed.csv');
+    const txtLines = readFileUtil('./sources/colors_used.csv');
 
     // Store title string
     const csvHeader = txtLines[0]; // Origional Header
@@ -24,11 +24,13 @@ function regexColorsUsed() {
     // Define start of new header
     // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
     let newCSVHeader = "id,painting_title,"
-    newCSVHeader = newCSVHeader + paintingColors + "total_colors";
+    newCSVHeader = newCSVHeader + paintingColors + ",total_colors";
     let formattedHeader = capWordUtil(newCSVHeader, ",");
 
     // Create clean dictionary with data needed
-    const regexPatterns = /^(\d{1,3}),\d*,([^,]*),([^,]*),(\d{1,3}),(\d{1,3}),(\d{1,3}),([^,]*)(,"([^"]*")){2}/;
+    const regexPatterns = /^(\d{1,3}),\d*,([^,]*),([^,]*),(\d{1,3}),(\d{1,3}),(\d{1,3}),([^,]*)(,"([^"]*")){2},/;
+
+    // console.log(`id = ${match[1]}, paintingTitle = ${match[3]}, season_helper = ${match[4]}, episode_helper = ${match[5]}, total_colors = ${match[6]}, youtube_src = ${match[7]}`);
 
     const dict = new Map();
 
