@@ -8,7 +8,7 @@ const readFileUtil = require('../utils/readFileUtil.js');
 const capWordUtil = require('../utils/capWordUtil.js');
 const writeFileUtil = require('../utils/writeFileUtil.js');
 
-function regexSubjectMatter() {
+function createSubjectsCSV() {
     // Read source CSV file
     const txtLines = readFileUtil('./sources/subject_matter.csv');
 
@@ -17,12 +17,11 @@ function regexSubjectMatter() {
     const regexEpisode = /^[^,]*/; // Matches: "EPISODE"
 
     // Remove "Episode" from title string and add "id"
-    let newCSVHeader = "ID" + csvHeader.replace(regexEpisode, "");
-    let formattedHeader = newCSVHeader.toLowerCase();
-    formattedHeader = capWordUtil(formattedHeader, ",");
+    const newCSVHeader = "ID" + csvHeader.replace(regexEpisode, "");
+    let formattedHeader = newCSVHeader.toLowerCase(); // lowercase
+    formattedHeader = capWordUtil(formattedHeader, ","); // Final Format
 
-    // Create clean dictionary with:
-    // id, title, season, subjects
+    // Create clean dictionary with: id, title, subjects
     const regexPatterns = /([^,]*),"{3}([^"]*)"{3},/;
 
     const dict = new Map();
@@ -35,19 +34,17 @@ function regexSubjectMatter() {
             return;
         }
         if (match) {
-            let paintingSeason = match[1];
-
             // Transforming Painting Title
             let paintingTitle = match[2]; // ALL CAPS
             let newPaintingTitle = paintingTitle.toLowerCase(); // lowercase
-            newPaintingTitle = capWordUtil(newPaintingTitle, " "); // Final Form
+            newPaintingTitle = capWordUtil(newPaintingTitle, " "); // Final Format
 
             // Capture true/false subject string from each line
             let paintingSubjects = line.replace(regexPatterns, "");
 
             // Adds auto-incrementing index to account for
             // Map overwriting non-unique keys
-            dict.set(index, { newPaintingTitle, paintingSeason, paintingSubjects });
+            dict.set(index, { newPaintingTitle, paintingSubjects });
         } else {
             console.log("No pattern found.");
         }
@@ -56,8 +53,7 @@ function regexSubjectMatter() {
     // console.log(`Size of dictionary: ${dict.size}`);
     // console.log(dict);
 
-    // Create new CSV with:
-    // id, title, string
+    // Create new CSV with: id, title, subjects
     headersArray = formattedHeader.split(',');
 
     // Transform Map into Array
@@ -70,5 +66,5 @@ function regexSubjectMatter() {
     writeFileUtil('./transformedCSVs/subject.csv', headersArray, data);
 }
 
-// Tests
-regexSubjectMatter();
+// Execute
+createSubjectsCSV();
