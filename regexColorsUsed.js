@@ -23,14 +23,12 @@ function regexColorsUsed() {
     let newCSVHeader = "id,painting_title,season_helper,episode_helper,total_colors,youtube_src,"
     newCSVHeader = newCSVHeader + paintingColors;
     let formattedHeader = capWordUtil(newCSVHeader, ",");
-    console.log(formattedHeader);
 
     // Create clean dictionary with data needed
-    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
-    const regexPatterns = /^([^,]*,){2}([^,]*),([^,]*),(\d),(\d),(\d)/;
+    const regexPatterns = /^(\d*),\d*,([^,]*),([^,]*),(\d),(\d),(\d),([^,]*)(,"([^"]*")){2}/;
+    const match = txtLines[1].match(regexPatterns);
 
-    `([^,]*,)(.*(?=painting_title))(.*(?=colors))([^B]*)`
-
+    console.log(`id = ${match[1]}, paintingTitle = ${match[3]}, season_helper = ${match[4]}, episode_helper = ${match[5]}, total_colors = ${match[6]}, youtube_src = ${match[7]}`);
     // const dict = new Map();
 
     // // Callback method to loop through each line of text
@@ -66,7 +64,8 @@ function regexColorsUsed() {
     // // id, title, string
     // headersArray = formattedHeader.split(',');
 
-    // // Transform Map into Array
+    // Transform Map into Array
+    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
     // data = [...dict.entries()].map(([id, { newPaintingTitle, paintingSubjects }]) => [
     //     id,
     //     newPaintingTitle,
