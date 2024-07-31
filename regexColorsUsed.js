@@ -25,8 +25,8 @@ function regexColorsUsed() {
     let formattedHeader = capWordUtil(newCSVHeader, ",");
     console.log(formattedHeader);
 
-    // Create clean dictionary with:
-    // id, title, season, subjects
+    // Create clean dictionary with data needed
+    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
     const regexPatterns = /^([^,]*,){2}([^,]*),([^,]*),(\d),(\d),(\d)/;
 
     `([^,]*,)(.*(?=painting_title))(.*(?=colors))([^B]*)`
