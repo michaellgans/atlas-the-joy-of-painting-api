@@ -77,6 +77,7 @@ False: "ab" or "a\nb"
 - To search for characters that are used in Regex pattners, they will need to be escaped. `\d+[\+-x\*]\d+` This pattern is looking for a digit repeated at least once, then a `+-x*`, and another digit repeated at least once.  Both `+` and `*` are escaped.
 
 ## Code Snips
+Shows the transformation of `episode_dates.txt` into a Map Dictionary.
 ```
 michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node regexEpisodeDates.js | head -8
 File has been read!
@@ -87,6 +88,14 @@ Map {
   3 => { paintingTitle: 'Ebony Sunset', paintingMonth: 'January' },
   4 => { paintingTitle: 'Winter Mist', paintingMonth: 'January' },
   5 => { paintingTitle: 'Quiet Stream', paintingMonth: 'February' },
+```
+Demonstrates a test for writing a new CSV file and Data Validation.
+```
+michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node regexSubjectMatter.js
+File has been read!
+Size of dictionary: 3
+File successfully written!
+Size of new CSV: 3
 ```
 
 ## Lessons Learned

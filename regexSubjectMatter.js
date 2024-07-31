@@ -50,12 +50,21 @@ function regexTest() {
     });
 
     console.log(`Size of dictionary: ${dict.size}`);
-    console.log(dict);
+    // console.log(dict);
 
     // Create new CSV with:
     // id, title, string
+    headersArray = newCSVHeader.split(',');
+
+    // Transform Map into Array
+    data = [...dict.entries()].map(([id, { newPaintingTitle, paintingSubjects }]) => [
+        id,
+        newPaintingTitle,
+        paintingSubjects
+    ]);
+
+    writeFileUtil('./test.csv', headersArray, data);
 }
 
 // Tests
-
 regexTest();
