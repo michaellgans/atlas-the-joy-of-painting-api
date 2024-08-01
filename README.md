@@ -3,6 +3,7 @@
 ## Table of Contents
 - [Code Snips](#code-snips)
 - [Regex Research](#regex---parsing-the-data)
+- [PowerBI](#powerbi)
 - [Lessons Learned](#lessons-learned)
 
 ## Code Snips
@@ -121,6 +122,13 @@ False: "ab" or "a\nb"
 #### Regex Notes
 
 - To search for characters that are used in Regex pattners, they will need to be escaped. `\d+[\+-x\*]\d+` This pattern is looking for a digit repeated at least once, then a `+-x*`, and another digit repeated at least once.  Both `+` and `*` are escaped.
+
+## PowerBI
+The transformed CSVs are loaded into PowerBI as Data. <br><br>
+![image](https://github.com/user-attachments/assets/a3a5a69f-fff8-4e55-9a84-c21c360fbead) <br><br>
+Each CSV becomes a table and establishes a relationship. <br><br>
+![image](https://github.com/user-attachments/assets/ddbaf439-94b5-4801-b5b8-179cfb57ea8f)
+
 
 ## Transformation Consistency Checklist
 - CSV headers will have the first letter capitalized only.
