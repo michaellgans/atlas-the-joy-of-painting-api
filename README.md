@@ -1,10 +1,52 @@
 # The Joy of Painting
 
-## Transformation Consistency Checklist
-- CSV headers will have the first letter capitalized only.
-- Painting Titles will have the first letter capitalized only.
+## Table of Contents
+- [Code Snips](#code-snips)
+- [Regex Research](#regex---parsing-the-data)
+- [Lessons Learned](#lessons-learned)
 
-### Regex - Parsing the Data
+## Code Snips
+Shows the transformation of `episode_dates.txt` into a Map Dictionary.
+```
+michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node regexEpisodeDates.js | head -8
+File has been read!
+Size of dictionary: 403
+Map {
+  1 => { paintingTitle: 'A Walk in the Woods', paintingMonth: 'January' },
+  2 => { paintingTitle: 'Mount McKinley', paintingMonth: 'January' },
+  3 => { paintingTitle: 'Ebony Sunset', paintingMonth: 'January' },
+  4 => { paintingTitle: 'Winter Mist', paintingMonth: 'January' },
+  5 => { paintingTitle: 'Quiet Stream', paintingMonth: 'February' },
+```
+Demonstrates a test for writing a new CSV file and Data Validation.
+```
+michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node regexSubjectMatter.js
+File has been read!
+Size of dictionary: 403
+File successfully written!
+Size of new CSV: 403
+```
+Refines CSV file creation!
+```
+michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node createCSVScripts/media.js
+File has been read!
+File successfully written!
+Size of new CSV: 403
+```
+Creates final Map by combining multiple imported Maps!
+```
+michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node createCSVScripts/episodes.js | head -12 | tail +5
+Size of dictionary: 403
+Map {
+  '1' => {
+    paintingTitle: 'A Walk in the Woods',
+    season: '1',
+    episoide: '1',
+    month: 'January'
+  },
+```
+
+## Regex - Parsing the Data
 
 <strong>This symbol means the preceding character is...</strong>
 
@@ -80,46 +122,9 @@ False: "ab" or "a\nb"
 
 - To search for characters that are used in Regex pattners, they will need to be escaped. `\d+[\+-x\*]\d+` This pattern is looking for a digit repeated at least once, then a `+-x*`, and another digit repeated at least once.  Both `+` and `*` are escaped.
 
-## Code Snips
-Shows the transformation of `episode_dates.txt` into a Map Dictionary.
-```
-michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node regexEpisodeDates.js | head -8
-File has been read!
-Size of dictionary: 403
-Map {
-  1 => { paintingTitle: 'A Walk in the Woods', paintingMonth: 'January' },
-  2 => { paintingTitle: 'Mount McKinley', paintingMonth: 'January' },
-  3 => { paintingTitle: 'Ebony Sunset', paintingMonth: 'January' },
-  4 => { paintingTitle: 'Winter Mist', paintingMonth: 'January' },
-  5 => { paintingTitle: 'Quiet Stream', paintingMonth: 'February' },
-```
-Demonstrates a test for writing a new CSV file and Data Validation.
-```
-michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node regexSubjectMatter.js
-File has been read!
-Size of dictionary: 403
-File successfully written!
-Size of new CSV: 403
-```
-Refines CSV file creation!
-```
-michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node createCSVScripts/media.js
-File has been read!
-File successfully written!
-Size of new CSV: 403
-```
-Creates final Map by combining multiple imported Maps!
-```
-michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node createCSVScripts/episodes.js | head -12 | tail +5
-Size of dictionary: 403
-Map {
-  '1' => {
-    paintingTitle: 'A Walk in the Woods',
-    season: '1',
-    episoide: '1',
-    month: 'January'
-  },
-```
+## Transformation Consistency Checklist
+- CSV headers will have the first letter capitalized only.
+- Painting Titles will have the first letter capitalized only.
 
 ## Lessons Learned
 
