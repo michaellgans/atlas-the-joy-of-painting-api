@@ -108,6 +108,18 @@ File has been read!
 File successfully written!
 Size of new CSV: 403
 ```
+Creates final Map by combining multiple imported Maps!
+```
+michaellgans@Victoria:~/atlas-the-joy-of-painting-api$ node createCSVScripts/episodes.js | head -12 | tail +5
+Size of dictionary: 403
+Map {
+  '1' => {
+    paintingTitle: 'A Walk in the Woods',
+    season: '1',
+    episoide: '1',
+    month: 'January'
+  },
+```
 
 ## Lessons Learned
 

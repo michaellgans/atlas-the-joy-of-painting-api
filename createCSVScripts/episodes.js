@@ -6,6 +6,7 @@
 // @MONTH - what month of the year the painting aired
 
 const capWordUtil = require('../utils/capWordUtil.js');
+const writeFileUtil = require('../utils/writeFileUtil.js');
 const { regexColorsUsed } = require('../regexColorsUsed.js');
 const { regexEpisodeDates } = require('../regexEpisodeDates.js');
 
@@ -20,58 +21,51 @@ function createEpisodesMap() {
     const { dict: colorsDict } = regexColorsUsed();
     const { dict: datesDict } = regexEpisodeDates();
 
-    console.log(colorsDict);
-    
     // Create clean dictionary with data needed
-    // const dict = new Map();
+    const dict = new Map();
 
-//     // Callback method to loop through each line of text
-//     txtLines.forEach((line, index) => {
-//         let match = line.match(regexPatterns);
-//         // Skips the Header of the CSV 
-//         if (index === 0) {
-//             return;
-//         }
-//         if (match) {
-//             let id = match[1];
-//             let paintingTitle = match[3];
-//             let total_colors = match[6];
+    // Callback method to loop through each Map
+    colorsDict.forEach((colorsValue, id) => {
+        let datesValue = datesDict.get(parseInt(id));
 
-//             // Capture true/false color string from each line
-//             let colorsData = line.replace(regexPatterns, "");
+        if (datesValue) {
+            // Create new dictionary with combined data
+            dict.set(id, {
+                paintingTitle: colorsValue.paintingTitle,
+                season: colorsValue.season_helper,
+                episoide: colorsValue.episode_helper,
+                month: datesValue.paintingMonth
+            });
+        }
+    });
 
-//             // Adds data from CSV to Map Dictionary
-//             dict.set(id, { paintingTitle, colorsData, total_colors });
-//         } else {
-//             console.log("No pattern found.");
-//         }
-//     });
-
-//     console.log(`Size of dictionary: ${dict.size}`);
-//     return { dict, formattedHeader };
+    console.log(`Size of dictionary: ${dict.size}`);
+    console.log(dict);
+    return { dict, formattedHeader };
 }
 
-// // Writes Subject CSV
-// function writeColorsByPaintingCSV() {
-//     const { dict, formattedHeader } = createColorsByPaintingMap();
+// Writes Episodes CSV
+function writeEpisodesCSV() {
+    const { dict, formattedHeader } = createEpisodesMap();
 
-//     // Create new CSV with: id, title, color_data, total_colors
-//     headersArray = formattedHeader.split(',');
+    // Create new CSV with: id, title, season, episode, month
+    headersArray = formattedHeader.split(',');
 
-//     // Transform Map into Array
-//     // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
-//     data = [...dict.entries()].map(([id, { paintingTitle, colorsData, total_colors }]) => [
-//         id,
-//         paintingTitle,
-//         colorsData,
-//         total_colors
-//     ]);
+    // Transform Map into Array
+    // TODO: CHANGE THIS DEPENDING ON WHAT YOU'RE PRINTING!!!
+    data = [...dict.entries()].map(([id, { paintingTitle, season, episoide, month }]) => [
+        id,
+        paintingTitle,
+        season,
+        episoide,
+        month
+    ]);
 
-//     writeFileUtil('./transformedCSVs/colors_by_painting.csv', headersArray, data);
-// }
+    writeFileUtil('./transformedCSVs/episodesTEST.csv', headersArray, data);
+}
 
 // Export Functions
-module.exports = { createEpisodesMap }
+module.exports = { createEpisodesMap, writeEpisodesCSV }
 
 // Execute
 if (require.main === module) {
