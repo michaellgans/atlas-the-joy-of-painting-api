@@ -40,7 +40,7 @@ function createEpisodesMap() {
     });
 
     console.log(`Size of dictionary: ${dict.size}`);
-    console.log(dict);
+    // console.log(dict);
     return { dict, formattedHeader };
 }
 
@@ -61,7 +61,7 @@ function writeEpisodesCSV() {
         month
     ]);
 
-    writeFileUtil('./transformedCSVs/episodesTEST.csv', headersArray, data);
+    writeFileUtil('./transformedCSVs/episodes.csv', headersArray, data);
 }
 
 // Export Functions
@@ -69,5 +69,5 @@ module.exports = { createEpisodesMap, writeEpisodesCSV }
 
 // Execute
 if (require.main === module) {
-    createEpisodesMap();
+    writeEpisodesCSV();
 }
