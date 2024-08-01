@@ -127,8 +127,15 @@ False: "ab" or "a\nb"
 The transformed CSVs are loaded into PowerBI as Data. <br><br>
 ![image](https://github.com/user-attachments/assets/a3a5a69f-fff8-4e55-9a84-c21c360fbead) <br><br>
 Each CSV becomes a table and establishes a relationship. <br><br>
-![image](https://github.com/user-attachments/assets/ddbaf439-94b5-4801-b5b8-179cfb57ea8f)
-
+![image](https://github.com/user-attachments/assets/ddbaf439-94b5-4801-b5b8-179cfb57ea8f) <br><br>
+Because of the relationships, an interactive dashboard can be developed and designed for user interaction! <br><br>
+![image](https://github.com/user-attachments/assets/b7ee50fb-09e4-4bec-bafb-03f4a44e5495) <br><br>
+Example of searching by Month: <br><br>
+![image](https://github.com/user-attachments/assets/b31ce68f-b177-46c6-917c-8449411c45eb) <br><br>
+Example of searching by Color: <br><br>
+![image](https://github.com/user-attachments/assets/e07f6f21-3229-4fd1-8dd9-67b5c29c3ecd) <br><br>
+Example of searching by Subject: <br><br>
+![image](https://github.com/user-attachments/assets/ada4dba9-9ac7-4fae-b1cf-50c58b409966) <br><br>
 
 ## Transformation Consistency Checklist
 - CSV headers will have the first letter capitalized only.
